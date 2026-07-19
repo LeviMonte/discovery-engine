@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retrosynthesis — Discovery Engine</title>
+<link rel="stylesheet" href="../shared/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" style="color:inherit">⬡ Discovery Engine</a>
+    <nav>
+      <a class="pill" href="../predict/">Predict</a>
+      <a class="pill" href="../generator/">Generate</a>
+      <a class="pill" href="../replay/">Replay</a>
+      <a class="pill" href="../novelty/">Confidence</a>
+      <a class="pill" href="../leaderboard/">Leaderboard</a>
+      <a class="pill active" href="./">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Retrosynthesis — "how would you make it?"</h1>
+  <p class="sub">Real ML retrosynthesis (AiZynthFinder, ASKCOS, IBM RXN) predicts
+    multi-step routes back to purchasable building blocks from millions of known
+    reactions. It's legitimate and chemists use it — but it needs a <b>backend</b>
+    (a Python service), it's <b>organic-molecules only</b>, and every route is a
+    <b>suggestion requiring lab validation</b>, never a guarantee. So this page is a
+    client: point it at a retrosynthesis backend and it'll show routes; with none
+    connected it makes zero external calls and just explains the honest setup.</p>
+
+  <div class="card" style="margin-top:14px">
+    <label for="smiles">Target molecule (SMILES)</label>
+    <div class="slider-row">
+      <input type="text" id="smiles" placeholder="e.g. CC(=O)Oc1ccccc1C(=O)O" autocomplete="off">
+      <button class="btn primary" id="go">Find routes</button>
+    </div>
+    <label for="endpoint">Retrosynthesis backend URL (yours — stored locally, not shared)</label>
+    <input type="text" id="endpoint" placeholder="https://your-space.hf.space/retro  (leave blank if none)">
+    <p class="small muted">Expected: <span class="mono">POST {smiles} → {routes:[{steps:[...], score}]}</span>.
+      Nothing is sent anywhere unless you set this to your own endpoint.</p>
+    <div class="alert" id="gate"></div>
+    <div id="routes"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>Stand up a free backend (AiZynthFinder on a Hugging Face Space)</h2>
+    <ol class="synth-steps">
+      <li>Create a free HF Space (Docker or Gradio).</li>
+      <li><span class="mono">pip install aizynthfinder</span> and download its public models/stock (<span class="mono">download_public_data</span>).</li>
+      <li>Wrap <span class="mono">aizynthfinder</span> in a tiny FastAPI/Gradio endpoint that accepts a SMILES and returns the top routes as JSON.</li>
+      <li>Paste the Space URL above. (ASKCOS and IBM RXN also expose APIs you can adapt.)</li>
+    </ol>
+    <p class="note small" id="honesty"></p>
+  </div>
+</div>
+
+<script src="../shared/caveats.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

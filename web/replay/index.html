@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discovery replay — Discovery Engine</title>
+<link rel="stylesheet" href="../shared/site.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" style="color:inherit">⬡ Discovery Engine</a>
+    <nav>
+      <a class="pill" href="../predict/">Predict</a>
+      <a class="pill" href="../generator/">Generate</a>
+      <a class="pill active" href="./">Replay</a>
+      <a class="pill" href="../novelty/">Confidence</a>
+      <a class="pill" href="../leaderboard/">Leaderboard</a>
+      <a class="pill" href="../retro/">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Discovery replay</h1>
+  <p class="sub" id="framing"></p>
+
+  <div class="card" style="margin-top:14px">
+    <div class="controls">
+      <div>
+        <label>Domain</label>
+        <div class="btnrow">
+          <button class="btn primary" id="dom-sc">Superconductor</button>
+          <button class="btn" id="dom-mol">Molecule (solubility)</button>
+        </div>
+      </div>
+      <div style="flex:1">
+        <label>Acquisition strategies to overlay</label>
+        <div class="checks" id="strat-checks"></div>
+      </div>
+    </div>
+
+    <div class="playbar">
+      <button class="btn primary" id="play">▶ Play</button>
+      <button class="btn ghost" id="reset">⟲</button>
+      <input type="range" id="scrub" min="0" max="100" value="100" style="flex:1">
+      <span class="mono small" id="frame-label"></span>
+    </div>
+
+    <canvas id="chart" height="150"></canvas>
+    <p class="small muted" id="chart-cap"></p>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>Headline metrics <span class="tag" id="metrics-domain"></span></h2>
+    <div class="tablewrap">
+      <table id="metrics">
+        <thead><tr>
+          <th>strategy</th><th>hits so far</th><th>enrichment ×</th>
+          <th>AUDC</th><th>acq. to <span id="halfK"></span> hits</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note small" id="metrics-note"></p>
+  </div>
+</div>
+
+<script src="../shared/caveats.js"></script>
+<script src="../vendor/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

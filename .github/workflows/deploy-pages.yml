@@ -1,0 +1,74 @@
+name: Deploy web/ to GitHub Pages
+
+# Serves the static site in web/ (no build step: plain HTML/CSS/JS + vendored libs).
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/deploy-pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# only one deploy at a time; don't cancel an in-progress deploy
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sanity-check required static assets exist
+        run: |
+          set -e
+          req=(
+            web/index.html
+            web/predict/index.html web/predict/app.js
+            web/predict/models/superconductor_ensemble.onnx
+            web/predict/models/model_meta.json
+            web/predict/models/molecular_ensemble.onnx
+            web/predict/models/molecular_meta.json
+            web/predict/models/grid_molecular.json
+            web/replay/index.html web/replay/app.js
+            web/replay/data/discovery_runs.json
+            web/novelty/index.html web/novelty/app.js
+            web/leaderboard/index.html web/leaderboard/app.js
+            web/generator/index.html web/generator/app.js
+            web/retro/index.html web/retro/app.js
+            web/predict/models/sascore_model.json web/predict/models/mol3d.json
+            web/predict/models/element_props.json
+            web/predict/models/stability_ensemble.onnx web/predict/models/stability_meta.json
+            web/predict/models/oxidation_en.json
+            web/shared/smact.js web/shared/stability.js
+            web/shared/caveats.js web/shared/site.css
+            web/shared/leaderboard.js web/shared/synthesis.js web/shared/molutil.js
+            web/shared/scfeat.js web/shared/scmodel.js
+            web/shared/community_seed.json
+            web/vendor/ort.min.js web/vendor/ort-wasm.wasm
+            web/vendor/ort-wasm-simd.wasm web/vendor/chart.umd.min.js
+            web/vendor/rdkit/RDKit_minimal.js web/vendor/rdkit/RDKit_minimal.wasm
+            web/vendor/jsme/jsme.nocache.js web/vendor/3Dmol-min.js
+          )
+          for f in "${req[@]}"; do
+            [ -f "$f" ] || { echo "MISSING: $f"; exit 1; }
+          done
+          echo "all required assets present"
+
+      - uses: actions/configure-pages@v5
+
+      - name: Upload web/ as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

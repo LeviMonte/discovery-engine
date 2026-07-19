@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# large/derived local caches (regenerable; not needed in the repo or deploy)
+results/cache/
+results/partial/
+results/metrics_smoke.json
+web/predict/models/_export_cache.json
+data/*.zip
+
+# keep: data/*.csv, results/metrics.json, results/figures/, web/ assets, ONNX, grids

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confidence &amp; Novelty — Discovery Engine</title>
+<link rel="stylesheet" href="../shared/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" style="color:inherit">⬡ Discovery Engine</a>
+    <nav>
+      <a class="pill" href="../predict/">Predict</a>
+      <a class="pill" href="../generator/">Generate</a>
+      <a class="pill" href="../replay/">Replay</a>
+      <a class="pill active" href="./">Confidence</a>
+      <a class="pill" href="../leaderboard/">Leaderboard</a>
+      <a class="pill" href="../retro/">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Confidence &amp; novelty — knowing what you don't know</h1>
+  <p class="sub">The heart of "predicting the unknown" is not the prediction, it's
+    the honest error bar around it. This page shows how well the models' uncertainty
+    is actually calibrated (from the real held-out results), and how novelty is
+    flagged — no new claims, just the validated diagnostics.</p>
+
+  <div class="card" style="margin-top:14px">
+    <div class="btnrow">
+      <button class="btn primary" id="dom-sc">Superconductor</button>
+      <button class="btn" id="dom-mol">Molecule (solubility)</button>
+    </div>
+    <div class="grid cols2" style="margin-top:8px">
+      <div>
+        <h2>Reliability — is the ± band honest?</h2>
+        <canvas id="rel" height="150"></canvas>
+        <p class="small muted" id="rel-cap"></p>
+      </div>
+      <div>
+        <h2>What the numbers say</h2>
+        <div class="kpis" style="flex-direction:column">
+          <div class="kpi"><div class="l">calibration error (ECE) — single net</div><div class="v" id="k-es">—</div></div>
+          <div class="kpi"><div class="l">ECE — deep ensemble (raw → recalibrated)</div><div class="v" id="k-ee">—</div></div>
+          <div class="kpi"><div class="l">does σ rank error? (Spearman σ vs |err|)</div><div class="v" id="k-sp">—</div></div>
+          <div class="kpi"><div class="l">mean aleatoric vs epistemic σ²</div><div class="v" id="k-ae">—</div></div>
+        </div>
+        <p class="note small" id="finding"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>How this demo flags "novelty" (out-of-distribution)</h2>
+    <div class="grid cols2">
+      <div>
+        <p class="small"><b>Superconductor tab —</b> range check. If any input
+        descriptor leaves the min–max seen in training, the prediction is flagged as
+        extrapolation. Simple and transparent.</p>
+        <p class="small"><b>Molecule tab —</b> epistemic uncertainty. When the 5
+        ensemble members disagree more than they did on 90% of training molecules,
+        the compound is flagged as novel/uncertain — a model-driven novelty signal
+        that needs no lookup table.</p>
+      </div>
+      <div>
+        <p class="small"><b>Why epistemic, not just distance?</b> Epistemic variance
+        (disagreement across the ensemble) is exactly the "have I seen things like
+        this?" term. It shrinks with more data and grows in unexplored regions — the
+        principled quantity for deciding what to measure next, which is the whole
+        thesis of the discovery benchmark.</p>
+        <p class="small muted" id="ood-note"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-caveat" id="honesty"></div>
+</div>
+
+<script src="../shared/caveats.js"></script>
+<script src="../vendor/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leaderboard — Discovery Engine</title>
+<link rel="stylesheet" href="../shared/site.css">
+<link rel="stylesheet" href="../replay/styles.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" style="color:inherit">⬡ Discovery Engine</a>
+    <nav>
+      <a class="pill" href="../predict/">Predict</a>
+      <a class="pill" href="../generator/">Generate</a>
+      <a class="pill" href="../replay/">Replay</a>
+      <a class="pill" href="../novelty/">Confidence</a>
+      <a class="pill active" href="./">Leaderboard</a>
+      <a class="pill" href="../retro/">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Leaderboard</h1>
+  <p class="sub" id="framing"></p>
+
+  <div class="card" style="margin-top:14px">
+    <div class="btnrow">
+      <button class="btn primary" id="dom-sc">Superconductor (Tc)</button>
+      <button class="btn" id="dom-mol">Molecule (log S)</button>
+      <span style="margin-left:auto"></span>
+      <button class="btn ghost" id="clear">Clear my finds</button>
+    </div>
+    <div class="tablewrap">
+      <table id="board">
+        <thead><tr><th>#</th><th>candidate</th><th id="metric-h">value</th><th>±σ</th><th>kind</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note small" id="note"></p>
+  </div>
+</div>
+
+<!-- synthesis modal -->
+<div class="modal" id="synth-modal">
+  <div class="modal-box">
+    <div class="modal-head"><b id="synth-title">Synthesis context</b>
+      <button class="btn ghost" id="synth-close">✕</button></div>
+    <div id="synth-body"></div>
+  </div>
+</div>
+
+<script src="../shared/caveats.js"></script>
+<script src="../shared/leaderboard.js"></script>
+<script src="../shared/synthesis.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

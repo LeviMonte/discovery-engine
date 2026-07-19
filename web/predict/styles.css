@@ -1,0 +1,5 @@
+/* Experience A page-specific tweaks (base styles in ../shared/site.css). */
+#sc-sliders > div { margin-bottom: 10px; }
+#sc-presets .btn { font-size: 13px; }
+.readout { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+#mol-select { margin-top: 4px; }

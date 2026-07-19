@@ -1,0 +1,37 @@
+# Domain B: Molecular graphs (transfer result)
+# Primary target was MolPolySim polymer Tg; when that repo is unreachable we
+# fall back to a MoleculeNet regression set (ESOL aqueous solubility).
+domain: molecular
+data:
+  dataset: esol            # esol | lipophilicity
+  pool_subsample: 0        # 0 = use all rows (ESOL ~1128 is already small)
+  test_frac: 0.15          # held-out set, used for CALIBRATION ONLY
+  split: scaffold          # Bemis-Murcko scaffold split (no scaffold leakage)
+featurize:
+  morgan_bits: 1024
+  morgan_radius: 2
+  use_descriptors: true    # a small set of continuous RDKit descriptors
+model:
+  type: mlp                # fingerprint+MLP fallback (graph stack optional)
+  hidden: [256, 256, 128]
+  ensemble_size: 5
+  epochs: 150
+  patience: 15
+  lr: 0.001
+  weight_decay: 0.00001
+  batch_size: 128
+  logvar_min: -8.0
+  logvar_max: 6.0
+active_learning:
+  seed_frac: 0.05
+  batch_frac: 0.02
+  n_rounds: 12
+  topk_frac: 0.05
+  ucb_beta: 1.5
+smoke:
+  pool_subsample: 500
+  ensemble_size: 2
+  epochs: 25
+  patience: 5
+  n_rounds: 5
+  seeds: 2

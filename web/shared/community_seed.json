@@ -1,0 +1,287 @@
+{
+  "generated": "from public benchmark data",
+  "entries": [
+    {
+      "domain": "superconductor",
+      "id": "H2S1",
+      "label": "H2S1",
+      "metric": "Tc",
+      "value": 185.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg0.66Pb0.34Ba2Ca1.98Cu2.9O8.4",
+      "label": "Hg0.66Pb0.34Ba2Ca1.98Cu2.9O8.4",
+      "metric": "Tc",
+      "value": 143.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg0.7Pb0.3Ba2Ca2Cu3O8",
+      "label": "Hg0.7Pb0.3Ba2Ca2Cu3O8",
+      "metric": "Tc",
+      "value": 143.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Tl0.8Hg0.2Ba2Ca2Cu3O9",
+      "label": "Tl0.8Hg0.2Ba2Ca2Cu3O9",
+      "metric": "Tc",
+      "value": 137.4,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Bi1.8Pb0.2Sb0.1Sr2Ca2Cu2O",
+      "label": "Bi1.8Pb0.2Sb0.1Sr2Ca2Cu2O",
+      "metric": "Tc",
+      "value": 136.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Bi1.6Pb0.4Sb0.1Sr2Ca2Cu2O",
+      "label": "Bi1.6Pb0.4Sb0.1Sr2Ca2Cu2O",
+      "metric": "Tc",
+      "value": 136.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg0.75Ba2.07Ca2.07Cu3.11O8.208",
+      "label": "Hg0.75Ba2.07Ca2.07Cu3.11O8.208",
+      "metric": "Tc",
+      "value": 135.8,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg1Ba2Ca2Cu3O8",
+      "label": "Hg1Ba2Ca2Cu3O8",
+      "metric": "Tc",
+      "value": 135.7,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg0.75Ba2.07Ca2.07Cu3.11O8.187",
+      "label": "Hg0.75Ba2.07Ca2.07Cu3.11O8.187",
+      "metric": "Tc",
+      "value": 135.4,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg1Ba2Ca2Cu3O8.27",
+      "label": "Hg1Ba2Ca2Cu3O8.27",
+      "metric": "Tc",
+      "value": 135.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg1Ba2Ca2Cu3O8.29",
+      "label": "Hg1Ba2Ca2Cu3O8.29",
+      "metric": "Tc",
+      "value": 135.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg1Ba2Ca2Cu3O",
+      "label": "Hg1Ba2Ca2Cu3O",
+      "metric": "Tc",
+      "value": 135.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg1Ba2Ca2Cu3FO8",
+      "label": "Hg1Ba2Ca2Cu3FO8",
+      "metric": "Tc",
+      "value": 135.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg0.9Re0.1Ba2Ca2Cu3O",
+      "label": "Hg0.9Re0.1Ba2Ca2Cu3O",
+      "metric": "Tc",
+      "value": 135.0,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "superconductor",
+      "id": "Hg0.75Ba2.07Ca2.07Cu3.11O8.15",
+      "label": "Hg0.75Ba2.07Ca2.07Cu3.11O8.15",
+      "metric": "Tc",
+      "value": 134.7,
+      "units": "K",
+      "kind": "benchmark reference (measured)",
+      "source": "UCI unique_m.csv"
+    },
+    {
+      "domain": "molecular",
+      "id": "O=C1CCCN1",
+      "label": "2-pyrrolidone",
+      "smiles": "O=C1CCCN1",
+      "metric": "log S",
+      "value": 1.07,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "OCC2OC(OC1(CO)OC(CO)C(O)C1O)C(O)C(O)C2O ",
+      "label": "Sucrose",
+      "smiles": "OCC2OC(OC1(CO)OC(CO)C(O)C1O)C(O)C(O)C2O ",
+      "metric": "log S",
+      "value": 0.79,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "CC(C)O",
+      "label": "2-Propanol",
+      "smiles": "CC(C)O",
+      "metric": "log S",
+      "value": 0.43,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "Cc1cccnc1C",
+      "label": "2,3-Dimethylpyridine",
+      "smiles": "Cc1cccnc1C",
+      "metric": "log S",
+      "value": 0.38,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "C/C=C/C=O",
+      "label": "t-Crotonaldehyde",
+      "smiles": "C/C=C/C=O",
+      "metric": "log S",
+      "value": 0.32,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "O=C1CCC(=O)N1",
+      "label": "Succinimide",
+      "smiles": "O=C1CCC(=O)N1",
+      "metric": "log S",
+      "value": 0.3,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "CCOc1ccc(cc1)C(C)(C)COCc3cccc(Oc2ccccc2)c3",
+      "label": "Etofenprox",
+      "smiles": "CCOc1ccc(cc1)C(C)(C)COCc3cccc(Oc2ccccc2)c3",
+      "metric": "log S",
+      "value": -8.6,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "Clc1cc(Cl)c(c(Cl)c1)c2c(Cl)cc(Cl)cc2Cl ",
+      "label": "2,2',4,4',6,6'-PCB",
+      "smiles": "Clc1cc(Cl)c(c(Cl)c1)c2c(Cl)cc(Cl)cc2Cl ",
+      "metric": "log S",
+      "value": -8.71,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "c1cc2cccc3c4cccc5cccc(c(c1)c23)c54",
+      "label": "Perylene",
+      "smiles": "c1cc2cccc3c4cccc5cccc(c(c1)c23)c54",
+      "metric": "log S",
+      "value": -8.804,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "c1cc2ccc3ccc4ccc5cccc6c(c1)c2c3c4c56",
+      "label": "Benzo[ghi]perylene",
+      "smiles": "c1cc2ccc3ccc4ccc5cccc6c(c1)c2c3c4c56",
+      "metric": "log S",
+      "value": -9.018,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "c1cc2ccc3ccc4ccc5ccc6ccc1c7c2c3c4c5c67",
+      "label": "Coronene",
+      "smiles": "c1cc2ccc3ccc4ccc5ccc6ccc1c7c2c3c4c5c67",
+      "metric": "log S",
+      "value": -9.332,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    },
+    {
+      "domain": "molecular",
+      "id": "Clc1c(Cl)c(Cl)c(c(Cl)c1Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2Cl ",
+      "label": "2,2',3,3',4,4',5,5',6,6'-PCB",
+      "smiles": "Clc1c(Cl)c(Cl)c(c(Cl)c1Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2Cl ",
+      "metric": "log S",
+      "value": -11.6,
+      "units": "log(mol/L)",
+      "kind": "benchmark reference (measured)",
+      "source": "MoleculeNet ESOL"
+    }
+  ]
+}

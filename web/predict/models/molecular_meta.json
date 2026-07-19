@@ -1,0 +1,79 @@
+{
+  "domain": "molecular",
+  "inference": "live-onnx-rdkitjs",
+  "onnx": "molecular_ensemble.onnx",
+  "target": {
+    "name": "aqueous solubility (log S)",
+    "units": "log(mol/L)",
+    "note": "ESOL solubility model (the intended polymer-Tg data was unreachable). Live in-browser inference via RDKit.js + ONNX."
+  },
+  "n_bits": 1024,
+  "radius": 2,
+  "descriptors": [
+    "MolWt",
+    "MolLogP",
+    "TPSA",
+    "NumHDonors",
+    "NumRotatableBonds",
+    "RingCount",
+    "FractionCSP3",
+    "NumAromaticRings",
+    "HeavyAtomCount"
+  ],
+  "desc_mean": [
+    191.2743682861328,
+    2.4538588523864746,
+    30.855579376220703,
+    0.6006256341934204,
+    2.201251268386841,
+    1.1470282077789307,
+    0.45948025584220886,
+    0.8415015935897827,
+    12.282586097717285
+  ],
+  "desc_std": [
+    97.38070678710938,
+    1.7250977754592896,
+    31.719894409179688,
+    0.9099379777908325,
+    2.70560359954834,
+    1.1733347177505493,
+    0.3846329152584076,
+    0.9178499579429626,
+    6.432323455810547
+  ],
+  "target_means": [
+    -2.856230674846626,
+    -2.828608588957055,
+    -2.869247852760736,
+    -2.781321472392638,
+    -2.918642944785276
+  ],
+  "target_stds": [
+    2.0298284072157515,
+    2.0812541140591634,
+    2.0342779487879326,
+    2.0604188947417645,
+    2.106852653702535
+  ],
+  "n_members": 5,
+  "epistemic_ood_threshold": 0.3450346291065216,
+  "true_range": [
+    -11.6,
+    1.58
+  ],
+  "allowed_elements": [
+    "H",
+    "B",
+    "C",
+    "N",
+    "O",
+    "F",
+    "Si",
+    "P",
+    "S",
+    "Cl",
+    "Br",
+    "I"
+  ]
+}

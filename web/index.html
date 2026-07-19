@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uncertainty-Driven Materials Discovery — interactive demo</title>
+<meta name="description" content="Interactive demo of a retrospective benchmark: does calibrated predictive uncertainty make materials discovery more sample-efficient, and does it transfer across chemistries?">
+<link rel="stylesheet" href="shared/site.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="brand">⬡ Discovery Engine</span>
+    <nav>
+      <a class="pill" href="predict/">Predict</a>
+      <a class="pill" href="generator/">Generate</a>
+      <a class="pill" href="replay/">Replay</a>
+      <a class="pill" href="novelty/">Confidence</a>
+      <a class="pill" href="leaderboard/">Leaderboard</a>
+      <a class="pill" href="retro/">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Does calibrated uncertainty make materials discovery more sample-efficient?</h1>
+  <p class="sub">
+    An interactive companion to a retrospective benchmarking study across two very
+    different chemistries — inorganic superconductors and organic molecules. You can
+    poke the trained models live and replay the actual active-learning experiments.
+    <b>This is a methods demo, not a claim to have discovered a new material.</b>
+  </p>
+
+  <div class="hero-cards" style="margin-top:22px">
+    <a class="hero-card" href="predict/">
+      <div class="emoji">🎛️</div>
+      <h3>Predict &amp; explain →</h3>
+      <p>Adjust a composition, or <b>draw a molecule</b> and get live μ ± σ back
+         (real in-browser inference for both domains), with the aleatoric/epistemic
+         split and an out-of-distribution warning.</p>
+    </a>
+    <a class="hero-card" href="generator/">
+      <div class="emoji">🧬</div>
+      <h3>Generate candidates →</h3>
+      <p>Inverse design: an evolutionary search mutates molecules, scores each with
+         the live ensemble, and surfaces the best — ranked by predicted property,
+         uncertainty, and synthesizability (SAscore). The "propose new things" half
+         of discovery, honestly framed as leads to investigate.</p>
+    </a>
+    <a class="hero-card" href="replay/">
+      <div class="emoji">📈</div>
+      <h3>Discovery replay →</h3>
+      <p>Overlay six acquisition strategies and watch the real saved discovery
+         curves grow measurement-by-measurement, with 95% CI bands over 5 seeds and
+         live enrichment / AUDC metrics.</p>
+    </a>
+    <a class="hero-card" href="novelty/">
+      <div class="emoji">🎯</div>
+      <h3>Confidence &amp; novelty →</h3>
+      <p>The real calibration diagnostics: is the ± band honest, does σ rank error,
+         and how novelty (out-of-distribution) gets flagged. Knowing what you don't
+         know — the core of predicting the unknown.</p>
+    </a>
+    <a class="hero-card" href="leaderboard/">
+      <div class="emoji">🏆</div>
+      <h3>Leaderboard →</h3>
+      <p>Your predictions auto-save locally and rank against real benchmark
+         reference materials. Click any entry for honest, referenced synthesis
+         context — and submit your best find via GitHub.</p>
+    </a>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h2>The three findings, honestly</h2>
+    <div class="grid cols2">
+      <div>
+        <p class="small"><b>1 · Sample efficiency.</b> Model-guided search finds the
+        top 5% of materials ~5× (superconductors) / ~3× (solubility) faster than
+        random — but adding an <i>uncertainty bonus</i> (UCB/Thompson/EI) does
+        <b>not</b> beat plain greedy. Calibrated model <i>means</i> do the work.</p>
+        <p class="small"><b>2 · Calibration.</b> Against a fair single network the
+        deep ensemble does not improve raw calibration; it slightly over-disperses
+        and needs post-hoc recalibration. Reported plainly, not hidden.</p>
+      </div>
+      <div>
+        <p class="small"><b>3 · Transfer.</b> The same machinery — changed only at
+        the featurizer — gives the same strategy ranking in both chemistries.</p>
+        <p class="small muted" id="proj-caveat"></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="small muted" style="margin-top:18px">
+    Built on the Phases 0–7 research repo (deep-ensemble heteroscedastic models,
+    leakage-guarded retrospective active learning). Everything runs from static
+    files — no backend, no API keys, no tracking. Source &amp; full writeup live in
+    the repository; see <span class="mono">WEBSITE.md</span>.
+  </p>
+</div>
+<script src="shared/caveats.js"></script>
+<script>document.getElementById('proj-caveat').textContent = window.CAVEATS.project;</script>
+</body>
+</html>

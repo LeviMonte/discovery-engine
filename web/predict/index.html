@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Predict &amp; explain — Discovery Engine</title>
+<link rel="stylesheet" href="../shared/site.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" style="color:inherit">⬡ Discovery Engine</a>
+    <nav>
+      <a class="pill active" href="./">Predict</a>
+      <a class="pill" href="../generator/">Generate</a>
+      <a class="pill" href="../replay/">Replay</a>
+      <a class="pill" href="../novelty/">Confidence</a>
+      <a class="pill" href="../leaderboard/">Leaderboard</a>
+      <a class="pill" href="../retro/">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Predict &amp; explain</h1>
+  <p class="sub">Live μ ± σ from the trained deep ensembles, with the
+    aleatoric/epistemic split and an out-of-distribution warning. Both domains now
+    run <b>live in your browser</b>.</p>
+  <div class="btnrow" style="margin:12px 0 4px">
+    <button class="btn primary" id="tab-sc">Superconductor <span class="tag live">live onnx</span></button>
+    <button class="btn" id="tab-mol">Molecule <span class="tag live">live onnx</span></button>
+  </div>
+
+  <!-- ================= SUPERCONDUCTOR ================= -->
+  <section id="panel-sc">
+    <div class="grid cols2">
+      <div class="card">
+        <h2>Composition inputs</h2>
+        <p class="small muted" id="sc-status"><span class="spinner"></span> loading model…</p>
+        <label for="sc-formula">Predict from a chemical formula (live)</label>
+        <div class="slider-row">
+          <input type="text" id="sc-formula" placeholder="e.g. YBa2Cu3O7  or  MgB2" autocomplete="off">
+          <button class="btn" id="sc-formula-go">Predict</button>
+        </div>
+        <div class="alert" id="sc-formula-note"></div>
+        <label>…or explore with sliders / presets</label>
+        <div class="btnrow" id="sc-presets"></div>
+        <div id="sc-sliders"></div>
+        <p class="note small">Only the 8 most important composition descriptors are
+          exposed; the other 73 stay at their training-set median.</p>
+      </div>
+      <div class="card">
+        <h2>Prediction</h2>
+        <div class="readout">
+          <span class="big" id="sc-mu">—</span>
+          <span class="pm">± <span id="sc-sigma">—</span> K</span>
+        </div>
+        <div class="small muted" id="sc-target"></div>
+        <div style="margin-top:14px">
+          <div class="bar"><div class="alea" id="sc-alea-bar"></div><div class="epi" id="sc-epi-bar"></div></div>
+          <div class="legend">
+            <span><span class="sw" style="background:var(--alea)"></span>aleatoric σ² <span class="mono" id="sc-alea">—</span></span>
+            <span><span class="sw" style="background:var(--epi)"></span>epistemic σ² <span class="mono" id="sc-epi">—</span></span>
+          </div>
+        </div>
+        <div class="alert" id="sc-ood"></div>
+        <div class="alert ok" id="sc-preset-note"></div>
+        <div id="sc-stab" class="note small" style="display:none"></div>
+        <div class="btnrow"><button class="btn ghost" id="sc-synth">🧪 Synthesis context</button>
+          <span class="small muted" id="sc-saved"></span></div>
+        <p class="note small" id="sc-tcif"></p>
+        <p class="note small" id="sc-sigmarank"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MOLECULE ================= -->
+  <section id="panel-mol" style="display:none">
+    <div class="grid cols2">
+      <div class="card">
+        <h2>Draw or enter a molecule</h2>
+        <p class="small muted" id="mol-status"><span class="spinner"></span> loading RDKit + model…</p>
+        <div class="btnrow">
+          <button class="btn primary" id="mol-draw">✏️ Draw a structure</button>
+        </div>
+        <label for="mol-smiles">…or type a SMILES and predict live</label>
+        <div class="slider-row">
+          <input type="text" id="mol-smiles" placeholder="e.g. CC(=O)Oc1ccccc1C(=O)O" autocomplete="off">
+          <button class="btn" id="mol-go">Predict</button>
+        </div>
+        <label for="mol-select">…or pick a known example</label>
+        <select id="mol-select"></select>
+        <div class="alert" id="mol-gate"></div>
+        <p class="note small">Live inference: RDKit.js computes the same Morgan
+          fingerprint + descriptors the model was trained on, then the ONNX ensemble
+          runs in your browser. Works for organic molecules only.</p>
+      </div>
+      <div class="card">
+        <h2>Prediction</h2>
+        <div class="small muted mono" id="mol-name">—</div>
+        <div class="readout" style="margin-top:6px">
+          <span class="big" id="mol-mu">—</span>
+          <span class="pm">± <span id="mol-sigma">—</span></span>
+        </div>
+        <div class="small muted" id="mol-target"></div>
+        <div style="display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap">
+          <div class="molstruct" id="mol-struct"></div>
+          <div>
+            <div class="small">synthesizability (SAscore): <b id="mol-sa">—</b>/10 <span class="muted small" id="mol-sa-kind"></span></div>
+            <div class="btnrow" style="margin-top:6px"><button class="btn ghost small" id="mol-3d">🧊 3D</button><button class="btn ghost small" id="mol-2d">▱ 2D</button></div>
+          </div>
+        </div>
+        <div class="small" style="margin-top:6px" id="mol-true-wrap">measured (truth): <span class="mono" id="mol-true">—</span></div>
+        <div style="margin-top:14px">
+          <div class="bar"><div class="alea" id="mol-alea-bar"></div><div class="epi" id="mol-epi-bar"></div></div>
+          <div class="legend">
+            <span><span class="sw" style="background:var(--alea)"></span>aleatoric σ² <span class="mono" id="mol-alea">—</span></span>
+            <span><span class="sw" style="background:var(--epi)"></span>epistemic σ² <span class="mono" id="mol-epi">—</span></span>
+          </div>
+        </div>
+        <div class="alert" id="mol-ood"></div>
+        <div class="btnrow"><button class="btn ghost" id="mol-synth">🧪 Synthesis context</button>
+          <button class="btn ghost" id="mol-tc">⚡ Tc if it superconducted?</button>
+          <span class="small muted" id="mol-saved"></span></div>
+        <div class="alert" id="mol-tc-out"></div>
+        <p class="note small" id="mol-sigmarank"></p>
+      </div>
+    </div>
+    <div class="footer-caveat" id="mol-footer"></div>
+  </section>
+
+  <div class="footer-caveat" id="uncertainty-note" style="margin-top:22px"></div>
+</div>
+
+<!-- ===== sketcher modal ===== -->
+<div class="modal" id="sketch-modal">
+  <div class="modal-box">
+    <div class="modal-head"><b>Draw a molecule</b>
+      <button class="btn ghost" id="sketch-close">✕</button></div>
+    <div id="jsme-container" style="width:100%;max-width:420px;height:340px;margin:0 auto"></div>
+    <div class="btnrow" style="justify-content:flex-end;margin-top:12px">
+      <span class="small muted" style="margin-right:auto" id="sketch-note">Metals/inorganic atoms aren't supported here — use the Superconductor tab for those.</span>
+      <button class="btn ghost" id="sketch-cancel">Cancel</button>
+      <button class="btn primary" id="sketch-use">Use this structure →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== synthesis modal ===== -->
+<div class="modal" id="synth-modal">
+  <div class="modal-box">
+    <div class="modal-head"><b id="synth-title">Synthesis context</b>
+      <button class="btn ghost" id="synth-close">✕</button></div>
+    <div id="synth-body"></div>
+  </div>
+</div>
+
+<script src="../shared/caveats.js"></script>
+<script src="../shared/leaderboard.js"></script>
+<script src="../shared/synthesis.js"></script>
+<script src="../shared/scfeat.js"></script>
+<script src="../shared/scmodel.js"></script>
+<script src="../shared/smact.js"></script>
+<script src="../shared/stability.js"></script>
+<script>window.jsmeOnLoad = function(){ window.__jsmeReady = true; };</script>
+<script src="../vendor/ort.min.js"></script>
+<script src="../vendor/rdkit/RDKit_minimal.js"></script>
+<script src="../vendor/3Dmol-min.js"></script>
+<script src="../vendor/jsme/jsme.nocache.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

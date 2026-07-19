@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Generate — Discovery Engine</title>
+<link rel="stylesheet" href="../shared/site.css">
+<link rel="stylesheet" href="../replay/styles.css">
+<style>
+.cand{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0d1322;margin-bottom:10px;display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
+.cand .struct{background:#fff;border-radius:8px;width:120px;height:96px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cand .struct svg{max-width:118px;max-height:94px}
+.viewer3d{width:120px;height:96px;position:relative;background:#0b1120;border-radius:8px}
+@media(max-width:560px){.cand{grid-template-columns:1fr}.cand .struct,.viewer3d{width:100%;height:150px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="../" style="color:inherit">⬡ Discovery Engine</a>
+    <nav>
+      <a class="pill" href="../predict/">Predict</a>
+      <a class="pill active" href="./">Generate</a>
+      <a class="pill" href="../replay/">Replay</a>
+      <a class="pill" href="../novelty/">Confidence</a>
+      <a class="pill" href="../leaderboard/">Leaderboard</a>
+      <a class="pill" href="../retro/">Synthesis</a>
+    </nav>
+  </div>
+
+  <h1>Generate candidates <span class="tag live">inverse design</span></h1>
+  <p class="sub">A simple evolutionary search over molecular structures: it mutates
+    and recombines molecules, scores each with the live ensemble, and surfaces the
+    best. This is the "propose new things" half of discovery — the honest AlphaFold-
+    style move — but every candidate is a <b>model hypothesis to investigate</b>,
+    not a validated compound.</p>
+
+  <div class="btnrow" style="margin:4px 0 8px">
+    <button class="btn primary" id="dom-mol">Molecule (solubility)</button>
+    <button class="btn" id="dom-sc">Superconductor (Tc)</button>
+  </div>
+  <div class="card" style="margin-top:6px">
+    <div class="controls">
+      <div>
+        <label>Objective</label>
+        <select id="obj"></select>
+      </div>
+      <div id="synthpref-wrap">
+        <label>Prefer synthesizable? (down-weight high SAscore)</label>
+        <select id="synthpref"><option value="1">yes</option><option value="0">no</option></select>
+      </div>
+      <div style="align-self:flex-end">
+        <button class="btn primary" id="run">▶ Run search</button>
+      </div>
+    </div>
+    <p class="small muted" id="status" style="margin-top:10px"><span class="spinner"></span> loading model…</p>
+  </div>
+
+  <div id="results"></div>
+  <div class="footer-caveat" id="honesty" style="margin-top:16px"></div>
+</div>
+
+<!-- synthesis modal -->
+<div class="modal" id="synth-modal"><div class="modal-box">
+  <div class="modal-head"><b id="synth-title">Synthesis context</b><button class="btn ghost" id="synth-close">✕</button></div>
+  <div id="synth-body"></div></div></div>
+
+<script src="../shared/caveats.js"></script>
+<script src="../shared/leaderboard.js"></script>
+<script src="../shared/synthesis.js"></script>
+<script src="../vendor/ort.min.js"></script>
+<script src="../vendor/rdkit/RDKit_minimal.js"></script>
+<script src="../vendor/3Dmol-min.js"></script>
+<script src="../shared/molutil.js"></script>
+<script src="../shared/scfeat.js"></script>
+<script src="../shared/scmodel.js"></script>
+<script src="../shared/smact.js"></script>
+<script src="../shared/stability.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

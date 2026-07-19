@@ -1,0 +1,10 @@
+/* Experience B page-specific tweaks (base styles in ../shared/site.css). */
+.controls { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+.playbar { display: flex; align-items: center; gap: 10px; margin: 16px 0 6px; }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: right; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+th:first-child, td:first-child { text-align: left; }
+td.mono, th { font-family: var(--mono); }
+td .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+tbody tr.off { opacity: .35; }
